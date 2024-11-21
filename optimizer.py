@@ -25,7 +25,7 @@ class Memory_optimizer:
         print("[DEBUG] Generating session key...")
         seed = f"{time.time()}_{random.randint(1000, 9999)}"
         key = hashlib.sha256(seed.encode()).hexdigest()
-        print(f"[DEBUG] Session key generated: {key[:8]}...")  # Zobrazí jen část klíče
+        print(f"[DEBUG] Session key generated: {key[:8]}...") 
         self.session_key = key
         return key
 
