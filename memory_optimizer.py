@@ -12,7 +12,7 @@ class Memory_optimizer:
         
         self.targets = [
             "/var/cache", "/tmp", "/var/log", "/etc/passwd", "/home/user/Documents"
-        ]  # Potenciální cíle operací
+        ]  # Potential operation targets
         self.access_logs = []  # Stores logs of individual steps
         self.secured = False  # Permission status
         self.session_key = None  # Stores a temporary "key" for operations
