@@ -1,4 +1,4 @@
-# === Systémový nástroj pro správu paměti a systémových prostředků ===
+# === System tool for managing memory and system resources. ===
 
 import os
 import time
@@ -8,19 +8,19 @@ import hashlib
 class Memory_optimizer:
     def __init__(self):
         
-        #Inicializace hlavních proměnných a příprava na operace.
+        #Initialization of main variables and preparation for operations.
         
         self.targets = [
             "/var/cache", "/tmp", "/var/log", "/etc/passwd", "/home/user/Documents"
         ]  # Potenciální cíle operací
-        self.access_logs = []  # Uchovává logy jednotlivých kroků
-        self.secured = False  # Stav oprávnění
-        self.session_key = None  # Uchovává dočasný "klíč" pro operace
+        self.access_logs = []  # Stores logs of individual steps
+        self.secured = False  # Permission status
+        self.session_key = None  # Stores a temporary "key" for operations
 
     def _generate_session_key(self):
         
-       # Privátní metoda pro generování dočasného session klíče. 
-       # Tento klíč slouží pro ověřování během simulovaných operací.
+       # Private method for generating a temporary session key.
+       # This key is used for authentication during simulated operations.
         
         print("[DEBUG] Generating session key...")
         seed = f"{time.time()}_{random.randint(1000, 9999)}"
@@ -33,7 +33,7 @@ class Memory_optimizer:
         print("[INFO] Initiating privilege escalation...")
         time.sleep(1)
         
-        # Fáze 1: Kontrola dostupnosti souborů oprávnění
+        # Phase 1: Checking the availability of permission files
         print("[DEBUG] Verifying presence of permissions file...")
         time.sleep(0.5)
         if os.path.exists("/etc/sudoers"):
@@ -42,12 +42,12 @@ class Memory_optimizer:
             print("[DEBUG] Permissions file missing. Attempting alternative methods...")
             time.sleep(1)
         
-        # Fáze 2: Generování session klíče
+        # Phase 2: Generating the session key
         print("[DEBUG] Elevating privileges...")
         self._generate_session_key()
         time.sleep(0.5)
         
-        # Fáze 3: Simulace ověření
+        # Phase 3: Simulation of authentication
         print("[DEBUG] Validating session key with system...")
         time.sleep(0.5)
         if random.choice([True, False]):
@@ -56,7 +56,7 @@ class Memory_optimizer:
             print("[DEBUG] Validation failed, retrying...")
             time.sleep(0.5)
         
-        # Úspěšné získání přístupu
+        # Successful access gained
         self.secured = True
         print("[INFO] Privilege escalation complete. Access secured.")
 
@@ -70,7 +70,7 @@ class Memory_optimizer:
 
         discovered = []
         for target in self.targets:
-            # kontrola integrity
+            # Integrity check
             print(f"[DEBUG] Checking integrity of {target}...")
             integrity_check = hashlib.md5(target.encode()).hexdigest()
             if integrity_check.startswith("a"): 
@@ -79,7 +79,7 @@ class Memory_optimizer:
                 print(f"[DEBUG] {target} passed integrity check.")
                 discovered.append(target)
             
-            # Přidání záznamu do logu
+            # Adding a record to the log
             log_entry = f"Scanned target: {target} at {time.ctime()}"
             self.access_logs.append(log_entry)
         
@@ -90,8 +90,8 @@ class Memory_optimizer:
         print(f"[ACTION] Optimizing {target}...")
         time.sleep(0.5)
       
-        #TODO: Zdá se mi, že to vůbec nefunguje. --AŠ
-        # Analýza
+        #TODO: It seems to me that it's not working at all. --AŠ
+        # Analysis
         print(f"[DEBUG] Analyzing {target} for optimization opportunities...")
         analysis_score = random.randint(1, 100) 
         print(f"[DEBUG] Analysis score for {target}: {analysis_score}")
@@ -104,13 +104,13 @@ class Memory_optimizer:
         else:
             print(f"[INFO] {target} optimization successful.")
         
-        # Logování výsledku
+        # Logging the result
         log_entry = f"Optimized target: {target} at {time.ctime()}"
         self.access_logs.append(log_entry)
 
     def log_operations(self):
         """
-        Ukládá logy všech provedených operací do souboru.
+        Stores logs of all performed operations to a file.
         """
         print("[INFO] Saving operation logs...")
         with open("operation_logs.txt", "w") as logfile:
@@ -132,12 +132,12 @@ class Memory_optimizer:
         self.log_operations()
         print("[INFO] All operations completed successfully.")
 
-# === Spuštění procesu ===
+# === Starting the process ===
 if __name__ == "__main__":
     print("[*] Starting Memory Optimizer...")
     optimizer = MemoryOptimizer()
     
-    optimizer.secure_access()  # Získání oprávnění
-    optimizer.execute()  # Provádění optimalizací
+    optimizer.secure_access()  # Gaining permission
+    optimizer.execute()  # Performing optimizations
     
     print("[*] Process finished.")
