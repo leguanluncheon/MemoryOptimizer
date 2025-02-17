@@ -5,7 +5,7 @@ import time
 import random
 import hashlib  
 
-class Memory_optimizer:
+class MemoryOptimizer:
     def __init__(self):
         
         #Initialization of main variables and preparation for operations.
